@@ -1,0 +1,63 @@
+Installing Terraform on Fedora Linux
+
+Terraform is distributed as a single binary file (one executable program). It doesn't need a heavy installation wizard; it just needs to be placed in a folder where your terminal can find it.
+
+Choose ONE of the methods below. (Method 1 is recommended for Fedora users).
+
+Method 1: The "Fedora Way" (Recommended)
+
+Instead of downloading a .zip file manually, you can tell Fedora's package manager (dnf) to download and set it up for you. This is the best practice because it makes updating Terraform later as easy as typing sudo dnf update.
+
+Open your terminal and paste these commands one by one:
+
+1. Install the tool needed to add new repositories:
+
+sudo dnf install -y dnf-plugins-core
+
+
+2. Add the official HashiCorp (the makers of Terraform) repository to your system:
+
+sudo dnf config-manager --add-repo [https://rpm.releases.hashicorp.com/fedora/hashicorp.repo](https://rpm.releases.hashicorp.com/fedora/hashicorp.repo)
+
+
+3. Install Terraform:
+
+sudo dnf -y install terraform
+
+
+Method 2: The Manual "Download & Extract" Way
+
+If you prefer to manually download the file and extract it yourself (which is what your notes implied), here is how to do it using the terminal.
+
+1. Download the zip file:
+(Note: We use wget to pull the latest Linux file directly from HashiCorp's servers)
+
+wget -O terraform.zip [https://releases.hashicorp.com/terraform/1.8.4/terraform_1.8.4_linux_amd64.zip](https://releases.hashicorp.com/terraform/1.8.4/terraform_1.8.4_linux_amd64.zip)
+
+
+2. Extract the executable from the zip file:
+
+unzip terraform.zip
+
+
+(If you get a "command not found" error for unzip, you can install it quickly with sudo dnf install unzip)
+
+3. Move the executable to your system's PATH:
+Right now, the terraform file is just sitting in your downloads folder. To let your terminal run it from anywhere, you must move it to a hidden system folder called /usr/local/bin.
+
+sudo mv terraform /usr/local/bin/
+
+
+4. Clean up the leftover zip file:
+
+rm terraform.zip
+
+
+Final Step: Verification (For Both Methods)
+
+Whichever method you chose, you should now verify that your computer recognizes the command. Close your terminal, open a fresh one, and type:
+
+terraform -version
+
+
+If it prints out Terraform v1.8.x (or whatever the latest version is), you have successfully installed it!

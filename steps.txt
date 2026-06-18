@@ -1,0 +1,97 @@
+Local Simulation Workflow: Hop-ClickHouse-Metabase-KNIME
+
+This is the chronological roadmap for building your local Proof of Concept.
+
+Phase 1: Environment & Asset Preparation
+
+Goal: Get the raw materials ready on your Fedora machine.
+
+Installations:
+
+Verify Docker (or Podman) is running.
+
+Download and extract Terraform executable.
+
+Ensure Apache Hop and KNIME desktop apps are ready.
+
+Data Sourcing:
+
+Go to Kaggle and download a .csv file representing event data (e.g., user clicks, financial transactions).
+
+Project Initialization:
+
+Create a new project folder on your machine.
+
+Initialize Git (git init) and create your .gitignore file.
+
+Phase 2: Infrastructure Provisioning (Terraform)
+
+Goal: Build the "servers" and networks using Docker containers.
+
+File Types Used: .tf (Terraform Configuration), .tfstate (State memory - hidden/ignored).
+
+Define the Provider: Tell Terraform to use Docker.
+
+Define the Network: Create a custom Docker network so the containers can talk to each other securely.
+
+Define Volumes: Create virtual hard drives for ClickHouse and Metabase so data persists.
+
+Define Containers (The Architecture):
+
+Container 1 (Message Queue): Define a Kafka/Zookeeper container.
+
+Container 2 (OLAP): Define a ClickHouse server container.
+
+Container 3 (BI): Define a Metabase container.
+
+Execution (Terminal Commands):
+
+Pseudocode logic: Initialize Terraform -> Preview changes -> Apply changes and build.
+
+Phase 3: Data Ingestion & Streaming (Python + Kafka + Hop)
+
+Goal: Replicate the "Microservices" pushing data, and move it into the data warehouse.
+
+File Types Used: .py (Python script), .csv (Raw data), .hpl (Hop Pipeline), .hwf (Hop Workflow).
+
+Simulate the Microservice (Python): * Write a tiny Python script that acts like "Service A".
+
+Pseudocode logic: Open Kaggle CSV -> Read one row at a time -> Pause for 0.5 seconds -> Send row to Kafka topic.
+
+Transform the Data (Apache Hop):
+
+Open your local Apache Hop GUI.
+
+Create a Pipeline (.hpl).
+
+Pseudocode logic: Connect to Kafka Topic -> Extract JSON event -> Clean up date formats/null values -> Bulk Insert into ClickHouse table.
+
+Phase 4: Consumption & Analytics (Metabase & KNIME)
+
+Goal: Prove the data is useful and accessible to stakeholders.
+
+File Types Used: .knwf (KNIME Workflow).
+
+Business Intelligence (Metabase):
+
+Open your web browser and go to localhost:3000 (where Metabase is running).
+
+Pseudocode logic: Connect database -> Enter ClickHouse IP/credentials -> Build a visual dashboard showing real-time event counts.
+
+Data Science (KNIME):
+
+Open your local KNIME desktop app.
+
+Create a new workflow (.knwf).
+
+Pseudocode logic: Add Database Connector node -> Point to ClickHouse -> Query historical data -> Add a Machine Learning node (e.g., K-Means clustering) -> Train model.
+
+Phase 5: Teardown
+
+Goal: Clean up your computer when you are done for the day.
+
+Destroy Infrastructure:
+
+Pseudocode logic: Run terraform destroy.
+
+Terraform safely turns off and deletes the Kafka, ClickHouse, and Metabase containers, returning your computer's RAM/CPU back to normal. (Your data volumes remain safe on your hard drive for next time).

@@ -1,0 +1,20 @@
+# Local .terraform directories (contains the downloaded Docker provider)
+**/.terraform/*
+
+# .tfstate files (contains sensitive data and exact infrastructure state)
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Ignore any files holding passwords or variables (if you make them later)
+*.tfvars
+*.tfvars.json
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
