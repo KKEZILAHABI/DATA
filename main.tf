@@ -142,7 +142,7 @@ resource "docker_container" "metabase" {
   # Port 3000 for accessing the UI on a  browser
   ports {
     internal = 3000
-    external = 3000
+    external = 3001
   }
 
   # Mount the volume to save generated dashboards
