@@ -8,15 +8,15 @@ Goal: Get the raw materials ready on your Fedora machine.
 
 Installations:
 
-Verify Docker (or Podman) is running.
+Verify Docker is running.
 
-Download and extract Terraform executable.
+Download and extract Terraform executable? Terminal Installation works just fine.
 
 Ensure Apache Hop and KNIME desktop apps are ready.
 
 Data Sourcing:
 
-Go to Kaggle and download a .csv file representing event data (e.g., user clicks, financial transactions).
+Go to Kaggle and download a .csv file representing event data (e.g., user clicks, financial transactions)/ A script generating synthetic event data works just fine.
 
 Project Initialization:
 
@@ -95,3 +95,5 @@ Destroy Infrastructure:
 Pseudocode logic: Run terraform destroy.
 
 Terraform safely turns off and deletes the Kafka, ClickHouse, and Metabase containers, returning your computer's RAM/CPU back to normal. (Your data volumes remain safe on your hard drive for next time).
+
+docker exec -it kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic service-a-events --from-beginning
