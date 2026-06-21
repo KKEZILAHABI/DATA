@@ -20,3 +20,4 @@ override.tf.json
 *_override.tf.json
 
 terminallogs.txt
+startup.txt

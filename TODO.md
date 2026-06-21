@@ -49,6 +49,8 @@ This document tracks the progress of the local Data Mesh simulation (Hop -> Clic
 ### Bugs:
 [] Timestamp Overshot to 2094
 
+[]  GMT timezome in clickhouse records
+
 [] First Record Changes on Seperate ClickHouse Runs
 
 ## Phase 4: Consumption & Analytics (To Do)
