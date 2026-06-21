@@ -46,22 +46,25 @@ This document tracks the progress of the local Data Mesh simulation (Hop -> Clic
 
 - [x] Build Hop Pipeline: Bulk insert data into ClickHouse table (localhost:8123).
 
+
+## Phase 4: Consumption & Analytics (To Do)
+
+- [x] Connect Metabase (localhost:3001) to ClickHouse.
+
+- [x] Create a real-time auto-refreshing dashboard in Metabase for event metrics.
+
+- [ ] Embed the dashboard
+
+- [ ] Connect local KNIME Analytics Platform to ClickHouse via database connector.
+
+- [ ] Extract historical data into KNIME and build a sample predictive model / clustering node.
+
 ### Bugs:
 - [ ] Timestamp Overshot to 2094
 
 - [ ]  GMT timezome in clickhouse records
 
 - [ ] First Record Changes on Seperate ClickHouse Runs
-
-## Phase 4: Consumption & Analytics (To Do)
-
-- [ ] Connect Metabase (localhost:3001) to ClickHouse.
-
-- [ ] Create a real-time auto-refreshing dashboard in Metabase for event metrics.
-
-- [ ] Connect local KNIME Analytics Platform to ClickHouse via database connector.
-
-- [ ] Extract historical data into KNIME and build a sample predictive model / clustering node.
 
 ## Phase 5: Operations & Teardown (To Do)
 
