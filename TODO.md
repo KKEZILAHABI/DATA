@@ -1,8 +1,8 @@
-Data Mesh PoC: Task Tracker
+# Data Mesh PoC: Task Tracker
 
 This document tracks the progress of the local Data Mesh simulation (Hop -> ClickHouse -> Metabase -> KNIME).
 
-Phase 1: Environment & Setup (Complete)
+## Phase 1: Environment & Setup (Complete)
 
 [x] Install Docker Engine / Podman.
 
@@ -14,7 +14,7 @@ Phase 1: Environment & Setup (Complete)
 
 [x] Update GitHub PAT (Personal Access Token) for remote pushing.
 
-Phase 2: Infrastructure as Code (Complete)
+## Phase 2: Infrastructure as Code (Complete)
 
 [x] Write main.tf to define Docker provider.
 
@@ -30,23 +30,28 @@ Phase 2: Infrastructure as Code (Complete)
 
 [x] Execute terraform apply successfully.
 
-Phase 3: Data Ingestion & Streaming (In Progress)
+## Phase 3: Data Ingestion & Streaming (In Progress)
 
 [x] Write Python microservice simulator (service_a_producer.py).
 
 [x] Install confluent_kafka and verify JSON payload delivery to Kafka topic.
 
-[ ] Connect to ClickHouse client and create the target service_a_events table.
+[x] Connect to ClickHouse client and create the target service_a_events table.
 
-[ ] Open Apache Hop GUI.
+[x] Open Apache Hop GUI.
 
-[ ] Build Hop Pipeline: Consume from Kafka topic (localhost:29092).
+[x] Build Hop Pipeline: Consume from Kafka topic (localhost:29092).
 
-[ ] Build Hop Pipeline: Parse JSON payload.
+[x] Build Hop Pipeline: Parse JSON payload.
 
-[ ] Build Hop Pipeline: Bulk insert data into ClickHouse table (localhost:8123).
+[x] Build Hop Pipeline: Bulk insert data into ClickHouse table (localhost:8123).
 
-Phase 4: Consumption & Analytics (To Do)
+### Bugs:
+[] Timestamp Overshot to 2094
+
+[] First Record Changes on Seperate ClickHouse Runs
+
+## Phase 4: Consumption & Analytics (To Do)
 
 [ ] Connect Metabase (localhost:3001) to ClickHouse.
 
@@ -56,7 +61,7 @@ Phase 4: Consumption & Analytics (To Do)
 
 [ ] Extract historical data into KNIME and build a sample predictive model / clustering node.
 
-Phase 5: Operations & Teardown (To Do)
+## Phase 5: Operations & Teardown (To Do)
 
 [ ] Document terraform destroy process for clean environment teardown without data loss.
 
