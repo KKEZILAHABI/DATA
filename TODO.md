@@ -30,7 +30,7 @@ This document tracks the progress of the local Data Mesh simulation (Hop -> Clic
 
 - [x] Execute terraform apply successfully.
 
-## Phase 3: Data Ingestion & Streaming (In Progress)
+## Phase 3: Data Ingestion & Streaming (Complete)
 
 - [x] Write Python microservice simulator (service_a_producer.py).
 
@@ -47,15 +47,15 @@ This document tracks the progress of the local Data Mesh simulation (Hop -> Clic
 - [x] Build Hop Pipeline: Bulk insert data into ClickHouse table (localhost:8123).
 
 
-## Phase 4: Consumption & Analytics (To Do)
+## Phase 4: Consumption & Analytics (Complete)
 
 - [x] Connect Metabase (localhost:3001) to ClickHouse.
 
 - [x] Create a real-time auto-refreshing dashboard in Metabase for event metrics.
 
-- [ ] Connect local KNIME Analytics Platform to ClickHouse via database connector.
+- [x] Connect local KNIME Analytics Platform to ClickHouse via database connector.
 
-- [ ] Extract historical data into KNIME and build a sample predictive model / clustering node.
+- [x] Extract historical data into KNIME and build a sample predictive model / clustering node.
 
 ### Pending And Bugs:
 - [ ] Timestamp Overshot to 2094
