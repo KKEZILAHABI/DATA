@@ -53,18 +53,18 @@ This document tracks the progress of the local Data Mesh simulation (Hop -> Clic
 
 - [x] Create a real-time auto-refreshing dashboard in Metabase for event metrics.
 
-- [ ] Embed the dashboard
-
 - [ ] Connect local KNIME Analytics Platform to ClickHouse via database connector.
 
 - [ ] Extract historical data into KNIME and build a sample predictive model / clustering node.
 
-### Bugs:
+### Pending And Bugs:
 - [ ] Timestamp Overshot to 2094
 
 - [ ]  GMT timezome in clickhouse records
 
 - [ ] First Record Changes on Seperate ClickHouse Runs
+
+- [ ] Embed the dashboard to An Application
 
 ## Phase 5: Operations & Teardown (To Do)
 

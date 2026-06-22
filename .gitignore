@@ -21,3 +21,15 @@ override.tf.json
 
 terminallogs.txt
 startup.txt
+
+# Ignore .vscode settings (if you use Visual Studio Code)
+.vscode/
+
+# Ignore .metadata directory (if it exists, as it may contain IDE-specific metadata)
+.metadata/
+
+# Ignore the CH_Sim directory (if it contains generated files or logs)
+CH_Sim/
+
+#Unnecessary files
+Example Workflows/
