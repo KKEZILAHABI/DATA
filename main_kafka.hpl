@@ -41,7 +41,7 @@
     <batchSize>1000</batchSize>
     <batchDuration>1000</batchDuration>
     <directBootstrapServers>localhost:29092</directBootstrapServers>
-    <AUTO_COMMIT>Y</AUTO_COMMIT>
+    <AUTO_COMMIT>N</AUTO_COMMIT>
     <OutputField kafkaName="key" type="String">Key</OutputField>
     <OutputField kafkaName="message" type="String">Message</OutputField>
     <OutputField kafkaName="topic" type="String">Topic</OutputField>

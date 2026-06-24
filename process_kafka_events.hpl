@@ -44,7 +44,9 @@
     </partitioning>
     <fields>
       <field>
+        <length/>
         <name>Message</name>
+        <precision/>
         <type>String</type>
       </field>
     </fields>
