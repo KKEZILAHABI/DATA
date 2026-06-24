@@ -44,9 +44,7 @@
     </partitioning>
     <fields>
       <field>
-        <length/>
         <name>Message</name>
-        <precision/>
         <type>String</type>
       </field>
     </fields>
@@ -152,7 +150,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>timestamp</name>
+        <name>event_timestamp_str</name>
         <path>$.timestamp</path>
         <type>String</type>
         <format/>
@@ -224,7 +222,7 @@
       </field>
       <field>
         <column_name>timestamp</column_name>
-        <stream_name>timestamp</stream_name>
+        <stream_name>event_timestamp_str</stream_name>
       </field>
     </fields>
     <ignore_errors>N</ignore_errors>
