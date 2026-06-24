@@ -57,12 +57,14 @@ This document tracks the progress of the local Data Mesh simulation (Hop -> Clic
 
 - [x] Extract historical data into KNIME and build a sample predictive model / clustering node.
 
+### Solved Issues:
+- [x] Timestamp Overshot to 2094
+
+- [x]  GMT timezome in clickhouse records
+
+- [x] First Record Changes on Seperate ClickHouse Runs
+
 ### Pending And Bugs:
-- [ ] Timestamp Overshot to 2094
-
-- [ ]  GMT timezome in clickhouse records
-
-- [ ] First Record Changes on Seperate ClickHouse Runs
 
 - [ ] Embed the dashboard to An Application
 
