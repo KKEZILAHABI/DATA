@@ -54,8 +54,8 @@ try:
         # Force the message out immediately
         producer.poll(0)
         
-        # Pause for a random amount of time (0.5 to 2 seconds) to simulate real user traffic
-        time.sleep(random.uniform(0.5, 2.0))
+        # Pause for a random amount of time to simulate real user traffic(): 50 to 200 Events Per Second
+        time.sleep(random.uniform(0.005, 0.02))
 
 except KeyboardInterrupt:
     print("\n Stopping simulator...")
