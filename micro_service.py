@@ -39,7 +39,7 @@ try:
             "event_type": random.choice(event_types),
             "platform": random.choice(platforms),
             "amount": round(random.uniform(5.0, 150.0), 2) if random.random() > 0.7 else 0.0,
-            "timestamp": datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')        }
+            "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S')        }
 
         # Convert the Python dictionary to a JSON string
         json_data = json.dumps(event_data)
