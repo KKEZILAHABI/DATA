@@ -64,11 +64,23 @@ This document tracks the progress of the local Data Mesh simulation (Hop -> Clic
 
 - [x] First Record Changes on Seperate ClickHouse Runs
 
+## Phase 5: Architecture Scaling & Automated Testing
+
+- [x] Provision distinct ClickHouse tables and Kafka topics for Transactions, Auth, and Goals.
+
+- [x] Refactor Python microservice to multiplex generated events across all three topics concurrently.
+
+- [x] Update Apache Hop pipeline with Regex topic subscription and Switch/Case logic to route streams to the correct tables.
+
+- [x] Write unit tests to validate Python event generation schemas, data types, and timestamp logic.
+
+- [ ] Implement integration tests validating Kafka message ingestion, Hop bulk-loading execution, and end-to-end data integrity.
+
 ### Pending And Bugs:
 
 - [ ] Embed the dashboard to An Application
 
-## Phase 5: Operations & Teardown (To Do)
+## Phase 6: Operations & Teardown (To Do)
 
 - [ ] Document terraform destroy process for clean environment teardown without data loss.
 
