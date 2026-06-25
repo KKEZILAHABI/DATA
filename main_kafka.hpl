@@ -33,6 +33,7 @@
       <schema_name/>
     </partitioning>
     <topic>service-a-events</topic>
+    <topic>.*_events</topic>
     <consumerGroup>localhost:8123</consumerGroup>
     <pipelinePath>/home/jbkezilahabi/DATA/process_kafka_events.hpl</pipelinePath>
     <executionInformationLocation/>
