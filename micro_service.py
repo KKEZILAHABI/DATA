@@ -61,5 +61,7 @@ except KeyboardInterrupt:
     print("\n Stopping simulator...")
 finally:
     # Ensure all messages are delivered before closing
-    producer.flush()
+    # Try to flush for exactly 5 seconds. If it fails, abandon ship and exit.
+    print("Flushing remaining messages to broker (5-second timeout)...")
+    producer.flush(5.0)
     print("Disconnected.")
