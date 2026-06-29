@@ -18,9 +18,11 @@ topic_name = 'service-a-events'
 def delivery_report(err, msg):
     """Callback triggered when a message is successfully delivered or fails."""
     if err is not None:
-        print(f"ERROR: Message delivery failed: {err}")
+        pass
+        # print(f"ERROR: Message delivery failed: {err}")
     else:
-        print(f"SUCCESS: Event Sent! Topic: {msg.topic()} | Partition: {msg.partition()}")
+        pass
+        # print(f"SUCCESS: Event Sent! Topic: {msg.topic()} | Partition: {msg.partition()}")
 
 print(f"Starting Microservice A Simulator...")
 print(f"Streaming data to Kafka at localhost:29092. Press Ctrl+C to stop.")
@@ -31,6 +33,7 @@ event_types = ['page_view', 'add_to_cart', 'purchase', 'login', 'click']
 platforms = ['web', 'ios', 'android']
 
 try:
+    count = 0
     while True:
         # Generate a fake event that mimics what a real microservice would produce
         event_data = {
@@ -51,11 +54,13 @@ try:
             callback=delivery_report
         )
         
-        # Force the message out immediately
-        producer.poll(0)
-        
+        count += 1
+        if count % 10000 == 0:
+            # Force the message out immediately
+            producer.poll(0)
+            
         # Pause for a random amount of time to simulate real user traffic(): 1000 to 100,000 Events Per Second
-        time.sleep(random.uniform(0.00001, 0.001))
+        #time.sleep(0.00001)
 
 except KeyboardInterrupt:
     print("\n Stopping simulator...")

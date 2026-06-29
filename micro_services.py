@@ -68,16 +68,19 @@ def delivery_report(err, msg):
     Called exactly once for every message produced to indicate the delivery result.
     """
     if err is not None:
-        print(f"Delivery failed for record {msg.key()}: {err}")
+        pass
+        # print(f"Delivery failed for record {msg.key()}: {err}")
     else:
+        pass
         # Optional: Comment this print statement out if the terminal gets too noisy 
         # at high EPS (Events Per Second)
-        print(f"Successfully delivered to {msg.topic()} [{msg.partition()}]")
+        # print(f"Successfully delivered to {msg.topic()} [{msg.partition()}]")
 
 # 6. The Iterative Multiplexing Loop
 def run_multiplexed_simulation():
     print("Starting iterative multiplexed simulation... Press Ctrl+C to stop.")
     try:
+        count = 0
         while True:
             # Domain A: Generate & Send Transaction Event
             txn_payload = generate_transaction_event()
@@ -103,11 +106,13 @@ def run_multiplexed_simulation():
                 callback=delivery_report
             )
 
-            # Serve delivery callback queue. poll(0) is non-blocking.
-            producer.poll(0)
-
-            # Sleep timer to control the throughput (e.g., 0.005 to 0.02 seconds)
-            time.sleep(random.uniform(0.005, 0.02))
+            count += 1
+            if count % 10000 == 0:
+                # Force the message out immediately
+                producer.poll(0)
+                
+            # Pause for a random amount of time to simulate real user traffic(): 1000 to 100,000 Events Per Second
+            #time.sleep(0.00001)
 
     except KeyboardInterrupt:
         print("\nTermination signal received. Initiating graceful drain...")
