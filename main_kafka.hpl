@@ -41,7 +41,7 @@
     <executionInformationLocation/>
     <executionDataProfile/>
     <subTransform/>
-    <batchSize>1000</batchSize>
+    <batchSize>10000</batchSize>
     <batchDuration>1000</batchDuration>
     <directBootstrapServers>localhost:29092</directBootstrapServers>
     <AUTO_COMMIT>N</AUTO_COMMIT>
@@ -61,8 +61,8 @@
     </advancedConfig>
     <attributes/>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>128</yloc>
+      <xloc>208</xloc>
+      <yloc>80</yloc>
     </GUI>
   </transform>
   <transform_error_handling>

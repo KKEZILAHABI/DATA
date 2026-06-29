@@ -26,16 +26,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case</from>
-      <to>JSON Input - Transactions</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>JSON Input - Auth</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>JSON Input - Transactions</from>
       <to>ClickHouse - Transactions</to>
       <enabled>Y</enabled>
@@ -46,23 +36,58 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case</from>
-      <to>JSON Input - Goals</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>JSON Input - Goals</from>
       <to>ClickHouse - Goals</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get messages from Kafka</from>
-      <to>JSON input</to>
+      <from>JSON input</from>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input</from>
-      <to>Table output</to>
+      <from>Switch / case</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case</from>
+      <to>Dummy (Transactions Route)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (Transactions Route)</from>
+      <to>JSON Input - Transactions</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case</from>
+      <to>Dummy (Auth Route)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case</from>
+      <to>Dummy (Goals Route)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case</from>
+      <to>Dummy (Service A Route)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (Auth Route)</from>
+      <to>JSON Input - Auth</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (Goals Route)</from>
+      <to>JSON Input - Goals</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (Service A Route)</from>
+      <to>JSON input</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -72,7 +97,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
@@ -81,7 +106,7 @@
     <always_drop_and_recreate>N</always_drop_and_recreate>
     <auto_update_table_structure>N</auto_update_table_structure>
     <change_column_types>N</change_column_types>
-    <commit>1000</commit>
+    <commit>10000</commit>
     <connection>CHSim</connection>
     <drop_columns>N</drop_columns>
     <fields>
@@ -110,19 +135,22 @@
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
     <return_keys>N</return_keys>
     <schema>events</schema>
     <specify_fields>Y</specify_fields>
     <table>auth_logs_raw</table>
+    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>N</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>208</yloc>
+      <xloc>1312</xloc>
+      <yloc>256</yloc>
     </GUI>
   </transform>
   <transform>
@@ -131,7 +159,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
@@ -140,7 +168,7 @@
     <always_drop_and_recreate>N</always_drop_and_recreate>
     <auto_update_table_structure>N</auto_update_table_structure>
     <change_column_types>N</change_column_types>
-    <commit>1000</commit>
+    <commit>10000</commit>
     <connection>CHSim</connection>
     <drop_columns>N</drop_columns>
     <fields>
@@ -173,19 +201,22 @@
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
     <return_keys>N</return_keys>
     <schema>events</schema>
     <specify_fields>Y</specify_fields>
     <table>goals_raw</table>
+    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>N</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>912</xloc>
-      <yloc>336</yloc>
+      <xloc>1312</xloc>
+      <yloc>400</yloc>
     </GUI>
   </transform>
   <transform>
@@ -194,7 +225,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
@@ -203,7 +234,7 @@
     <always_drop_and_recreate>N</always_drop_and_recreate>
     <auto_update_table_structure>N</auto_update_table_structure>
     <change_column_types>N</change_column_types>
-    <commit>1000</commit>
+    <commit>10000</commit>
     <connection>CHSim</connection>
     <drop_columns>N</drop_columns>
     <fields>
@@ -236,26 +267,46 @@
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
     <return_keys>N</return_keys>
     <schema>events</schema>
     <specify_fields>Y</specify_fields>
     <table>transactions_raw</table>
+    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>N</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>1312</xloc>
       <yloc>96</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>592</yloc>
     </GUI>
   </transform>
   <transform>
     <name>Get messages from Kafka</name>
     <type>Injector</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -267,11 +318,15 @@
         <name>Message</name>
         <type>String</type>
       </field>
+      <field>
+        <name>Topic</name>
+        <type>String</type>
+      </field>
     </fields>
     <attributes/>
     <GUI>
-      <xloc>100</xloc>
-      <yloc>100</yloc>
+      <xloc>112</xloc>
+      <yloc>96</yloc>
     </GUI>
   </transform>
   <transform>
@@ -280,7 +335,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
@@ -373,7 +428,7 @@
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField/>
+    <valueField>Message</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -384,8 +439,8 @@
     <sizeFieldName/>
     <attributes/>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>208</yloc>
+      <xloc>992</xloc>
+      <yloc>256</yloc>
     </GUI>
   </transform>
   <transform>
@@ -394,7 +449,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
@@ -500,7 +555,7 @@
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField/>
+    <valueField>Message</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -511,8 +566,8 @@
     <sizeFieldName/>
     <attributes/>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>336</yloc>
+      <xloc>1008</xloc>
+      <yloc>400</yloc>
     </GUI>
   </transform>
   <transform>
@@ -521,7 +576,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
@@ -638,7 +693,7 @@
     <sizeFieldName/>
     <attributes/>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>1040</xloc>
       <yloc>96</yloc>
     </GUI>
   </transform>
@@ -648,7 +703,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
@@ -765,8 +820,8 @@
     <sizeFieldName/>
     <attributes/>
     <GUI>
-      <xloc>160</xloc>
-      <yloc>448</yloc>
+      <xloc>1040</xloc>
+      <yloc>544</yloc>
     </GUI>
   </transform>
   <transform>
@@ -780,21 +835,30 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <case_value_decimal/>
+    <case_value_format/>
+    <case_value_group/>
+    <case_value_type/>
     <cases>
       <case>
-        <target_transform>JSON Input - Transactions</target_transform>
+        <target_transform>Dummy (Transactions Route)</target_transform>
         <value>transaction_events</value>
       </case>
       <case>
-        <target_transform>JSON Input - Auth</target_transform>
+        <target_transform>Dummy (Auth Route)</target_transform>
         <value>auth_events</value>
       </case>
       <case>
-        <target_transform>JSON Input - Goals</target_transform>
+        <target_transform>Dummy (Goals Route)</target_transform>
         <value>goal_events</value>
       </case>
+      <case>
+        <target_transform>Dummy (Service A Route)</target_transform>
+        <value>service-a-events</value>
+      </case>
     </cases>
-    <fieldname>Message</fieldname>
+    <default_target_transform>Dummy (do nothing)</default_target_transform>
+    <fieldname>Topic</fieldname>
     <use_contains>N</use_contains>
     <attributes/>
     <GUI>
@@ -808,7 +872,7 @@
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
-    <copies>1</copies>
+    <copies>4</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
@@ -817,7 +881,7 @@
     <always_drop_and_recreate>N</always_drop_and_recreate>
     <auto_update_table_structure>N</auto_update_table_structure>
     <change_column_types>N</change_column_types>
-    <commit>1000</commit>
+    <commit>10000</commit>
     <connection>CHSim</connection>
     <drop_columns>N</drop_columns>
     <fields>
@@ -850,19 +914,90 @@
     <only_when_have_rows>N</only_when_have_rows>
     <partitioning_daily>N</partitioning_daily>
     <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
     <partitioning_monthly>Y</partitioning_monthly>
+    <return_field/>
     <return_keys>N</return_keys>
     <schema>events</schema>
     <specify_fields>Y</specify_fields>
     <table>service_a_events</table>
+    <tablename_field/>
     <tablename_in_field>N</tablename_in_field>
     <tablename_in_table>Y</tablename_in_table>
     <truncate>N</truncate>
     <use_batch>Y</use_batch>
     <attributes/>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>448</yloc>
+      <xloc>1328</xloc>
+      <yloc>544</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Dummy (Transactions Route)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <GUI>
+      <xloc>752</xloc>
+      <yloc>96</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Dummy (Auth Route)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>256</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Dummy (Goals Route)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>400</yloc>
+    </GUI>
+  </transform>
+  <transform>
+    <name>Dummy (Service A Route)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>544</yloc>
     </GUI>
   </transform>
   <transform_error_handling>
