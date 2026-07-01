@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "docker" {
-  # Connects to the local Docker engine
+  host = "unix://${pathexpand("~/.docker/desktop/docker.sock")}"
 }
 
 # ==========================================
