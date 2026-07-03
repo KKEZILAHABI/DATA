@@ -34,6 +34,19 @@ resource "docker_volume" "metabase_data" {
   name = "metabase_data"
 }
 
+# Persistent storage for Zookeeper state
+resource "docker_volume" "zookeeper_data" {
+  name = "zookeeper_data"
+}
+
+resource "docker_volume" "zookeeper_log" {
+  name = "zookeeper_log"
+}
+
+# Persistent storage for Kafka topics and messages
+resource "docker_volume" "kafka_data" {
+  name = "kafka_data"
+}
 # ==========================================
 # 3. DOCKER IMAGES
 # ==========================================
@@ -72,6 +85,16 @@ resource "docker_container" "zookeeper" {
     "ZOOKEEPER_CLIENT_PORT=2181",
     "ZOOKEEPER_TICK_TIME=2000"
   ]
+
+  # Mount persistent volumes
+  volumes {
+    volume_name    = docker_volume.zookeeper_data.name
+    container_path = "/var/lib/zookeeper/data"
+  }
+  volumes {
+    volume_name    = docker_volume.zookeeper_log.name
+    container_path = "/var/lib/zookeeper/log"
+  }
 }
 
 # 4B. The Message Queue (Kafka)
@@ -97,6 +120,12 @@ resource "docker_container" "kafka" {
     "KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT",
     "KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1"
   ]
+
+  # Mount persistent volume for topic logs
+  volumes {
+    volume_name    = docker_volume.kafka_data.name
+    container_path = "/var/lib/kafka/data"
+  }
 }
 
 # 4C. Data Warehouse (ClickHouse)
