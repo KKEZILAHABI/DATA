@@ -103,6 +103,8 @@ resource "docker_container" "kafka" {
 resource "docker_container" "clickhouse" {
   name  = "clickhouse"
   image = docker_image.clickhouse.image_id
+  memory = 4096
+  
   networks_advanced {
     name = docker_network.data_mesh_net.name
   }
